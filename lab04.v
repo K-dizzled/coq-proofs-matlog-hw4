@@ -79,7 +79,12 @@ Definition eqext_trans :
 Definition eq_compl :
   forall (f g : A -> B) (h : B -> C),
     f =1 g -> h \o f =1 h \o g
-:= provide_solution.
+:= fun f g => fun h => fun fEg => fun x => 
+    match 
+      (fEg x)
+    with 
+    | eq_refl => eq_refl (h (f x))
+    end.
 
 (** Exercise: right congruence *)
 Definition eq_compr :
