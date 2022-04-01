@@ -90,6 +90,11 @@ Definition eq_compl :
 Definition eq_compr :
   forall (f g : B -> C) (h : A -> B),
     f =1 g -> f \o h =1 g \o h
-:= provide_solution.
+:= fun f g => fun h => fun fEg => fun x => 
+    match 
+      (fEg (h x))
+    with 
+    | eq_refl => eq_refl (f (h x))
+    end.
 
 End ExtensionalEqualityAndComposition.
