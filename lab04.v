@@ -14,7 +14,18 @@ Section Logic.
 
 Definition and_via_ex (A B : Prop) :
   (exists (_ : A), B) <-> A /\ B
-:= provide_solution.
+:= conj (
+      fun f => 
+        match 
+          f 
+        with 
+        | ex_intro _ a b => conj a b 
+        end 
+    ) (
+      fun (aAb : A /\ B) => (
+        ex_intro _ (proj1 aAb) (proj2 aAb)
+      ) 
+    ).
 
 (** Exercise: The dual Frobenius rule *)
 
